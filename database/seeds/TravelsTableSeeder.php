@@ -1,5 +1,5 @@
 <?php
-
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use App\Models\Travel;
 class TravelsTableSeeder extends Seeder
@@ -9,10 +9,22 @@ class TravelsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
+        
+        for ($i = 0; $i < 20; $i++) {
+            $_travel = new Travel();
+            $_travel->destinazione = $faker->destinazione();
+            $_travel->descrizione = $faker->descrizione();
+            $_travel->passeggeri = $faker->numberBetween(3, 5);
+            $_travel->partenza = $faker->partenza("2021/07/03");
+            $_travel->ritorno = $faker->partenza("2021/07/17");
+            $_travel->prezzo = $faker->numberBetween(100, 370);
+            $_travel->save();
+      
+        
 
-        $travels = [
+        /*$travels = [
             [
                 'destinazione' => 'parigi',
                 'descrizione' => 'brutto',
@@ -61,7 +73,7 @@ class TravelsTableSeeder extends Seeder
             $_travel->ritorno = $travel['ritorno'];
             $_travel->prezzo = $travel['prezzo'];
             $_travel->save();
-        }
+        }*/
 
 
 
